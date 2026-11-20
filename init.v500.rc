@@ -1,0 +1,34 @@
+on init
+    export LIBGL_ALWAYS_SOFTWARE 1
+    mkdir /config/usb_gadget/g1
+    write /config/usb_gadget/g1/bcdUSB 0x0200
+    write /config/usb_gadget/g1/idVendor 0x18d1
+    write /config/usb_gadget/g1/idProduct 0x4ee7
+    mkdir /config/usb_gadget/g1/strings/0x409
+    write /config/usb_gadget/g1/strings/0x409/serialnumber ${ro.serialno}
+    write /config/usb_gadget/g1/strings/0x409/manufacturer LG
+    write /config/usb_gadget/g1/strings/0x409/product "LG V500 M6"
+    mkdir /config/usb_gadget/g1/configs/b.1
+    mkdir /config/usb_gadget/g1/configs/b.1/strings/0x409
+    mkdir /config/usb_gadget/g1/functions/ffs.adb
+    write /config/usb_gadget/g1/os_desc/use 1
+    write /config/usb_gadget/g1/os_desc/b_vendor_code 0x01
+    write /config/usb_gadget/g1/os_desc/qw_sign MSFT100
+    symlink /config/usb_gadget/g1/configs/b.1 /config/usb_gadget/g1/os_desc/b.1
+    mkdir /dev/usb-ffs 0775 shell shell
+    mkdir /dev/usb-ffs/adb 0770 shell shell
+    mount functionfs adb /dev/usb-ffs/adb uid=2000,gid=2000
+    setprop sys.usb.controller ci_hdrc.0
+    setprop sys.usb.configfs 1
+
+on init && property:ro.boot.v500_gpu=1
+    export LIBGL_ALWAYS_SOFTWARE 0
+
+on late-fs
+    mount_all /vendor/etc/fstab.v500 --late
+
+on post-fs-data
+    setprop sys.usb.config adb
+
+on property:init.svc.surfaceflinger=running
+    write /sys/class/leds/lm3532:lcd-backlight/brightness 180
