@@ -8,6 +8,8 @@ PRODUCT_BRAND := lge
 PRODUCT_MANUFACTURER := LG
 PRODUCT_MODEL := LG-V500
 PRODUCT_CHARACTERISTICS := tablet
+DEVICE_PACKAGE_OVERLAYS += vendor/lge/v500/overlay
+PRODUCT_PACKAGES += V500NavigationDefaults
 PRODUCT_USE_DYNAMIC_PARTITIONS := false
 PRODUCT_SHIPPING_API_LEVEL := 28
 PRODUCT_BUILD_BOOT_IMAGE := false
@@ -18,8 +20,8 @@ PRODUCT_BUILD_RECOVERY_IMAGE := false
 PRODUCT_ENABLE_UFFD_GC := false
 # Keep APEX payloads ready to mount during first boot on SDCC1 PIO.
 PRODUCT_COMPRESSED_APEX := false
-# Precompile the setup wizard on the host, as LineageOS already does for Trebuchet.
-PRODUCT_DEXPREOPT_SPEED_APPS += LineageSetupWizard
+# Settings supplies the lock chooser and other pages shown during first-time setup.
+PRODUCT_DEXPREOPT_SPEED_APPS += LineageSetupWizard Settings
 PRODUCT_PACKAGES += init_first_stage
 PRODUCT_VENDOR_PROPERTIES += ro.config.low_ram=true
 
@@ -62,6 +64,7 @@ PRODUCT_COPY_FILES += \
     device/lge/v500/fstab.v500:$(TARGET_COPY_OUT_VENDOR)/etc/fstab.v500 \
     device/lge/v500/init.v500.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/init.v500.rc \
     frameworks/native/data/etc/android.hardware.touchscreen.multitouch.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.touchscreen.multitouch.xml \
+    frameworks/native/data/etc/android.hardware.usb.accessory.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.usb.accessory.xml \
     frameworks/native/data/etc/android.software.app_widgets.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.software.app_widgets.xml
 
 # Keep the initial SystemUI dexopt within the recovery timer on SDCC1 PIO.
@@ -79,5 +82,6 @@ PRODUCT_VENDOR_PROPERTIES += \
 ifneq ($(wildcard device/lge/v500/.v500-half-client),)
 PRODUCT_VENDOR_PROPERTIES += vendor.hwc.backend_override=v500-half-client ro.sf.lcd_density=140
 else
-PRODUCT_VENDOR_PROPERTIES += vendor.hwc.backend_override=client ro.sf.lcd_density=240
+# The 8.3-inch panel is approximately 273 ppi.
+PRODUCT_VENDOR_PROPERTIES += vendor.hwc.backend_override=client ro.sf.lcd_density=280
 endif

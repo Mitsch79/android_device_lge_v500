@@ -11,6 +11,7 @@ on init
     mkdir /config/usb_gadget/g1/configs/b.1
     mkdir /config/usb_gadget/g1/configs/b.1/strings/0x409
     mkdir /config/usb_gadget/g1/functions/ffs.adb
+    mkdir /config/usb_gadget/g1/functions/accessory.gs2
     write /config/usb_gadget/g1/os_desc/use 1
     write /config/usb_gadget/g1/os_desc/b_vendor_code 0x01
     write /config/usb_gadget/g1/os_desc/qw_sign MSFT100
@@ -30,5 +31,5 @@ on late-fs
 on post-fs-data
     setprop sys.usb.config adb
 
-on property:init.svc.surfaceflinger=running
-    write /sys/class/leds/lm3532:lcd-backlight/brightness 180
+on shutdown
+    write /sys/class/backlight/panel-backlight/bl_power 4
