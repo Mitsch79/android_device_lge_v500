@@ -79,5 +79,5 @@ PRODUCT_VENDOR_PROPERTIES += \
 ifneq ($(wildcard device/lge/v500/.v500-half-client),)
 PRODUCT_VENDOR_PROPERTIES += vendor.hwc.backend_override=v500-half-client ro.sf.lcd_density=140
 else
-PRODUCT_VENDOR_PROPERTIES += vendor.hwc.backend_override=client ro.sf.lcd_density=280
+PRODUCT_VENDOR_PROPERTIES += vendor.hwc.backend_override=client ro.sf.lcd_density=240
 endif
