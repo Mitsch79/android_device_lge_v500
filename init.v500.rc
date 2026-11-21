@@ -29,6 +29,7 @@ on late-fs
     mount_all /vendor/etc/fstab.v500 --late
 
 on post-fs-data
+    chown system system /sys/class/backlight/panel-backlight/brightness
     setprop sys.usb.config adb
 
 on shutdown

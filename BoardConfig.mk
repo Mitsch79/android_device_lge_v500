@@ -28,4 +28,5 @@ BOARD_RAMDISK_USE_LZ4 := false
 BOARD_AVB_ENABLE := false
 
 BOARD_SEPOLICY_DIRS += device/lge/v500/sepolicy
+BOARD_VENDOR_SEPOLICY_DIRS += vendor/lge/v500/sepolicy
 DEVICE_MANIFEST_FILE := device/lge/v500/manifest.xml
