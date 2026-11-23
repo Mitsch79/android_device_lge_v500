@@ -81,6 +81,12 @@ PRODUCT_COPY_FILES += \
     device/lge/v500/.v500-wizard-shaders/com.android.skia.shaders_cache:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/setupwizard-shaders/com.android.skia.shaders_cache
 endif
 
+ifneq ($(wildcard device/lge/v500/.v500-settings-shaders),)
+PRODUCT_COPY_FILES += \
+    device/lge/v500/.v500-settings-shaders/com.android.opengl.shaders_cache:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/settings-shaders/com.android.opengl.shaders_cache \
+    device/lge/v500/.v500-settings-shaders/com.android.skia.shaders_cache:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/settings-shaders/com.android.skia.shaders_cache
+endif
+
 # MDP4 requires linear scanout buffers on the V500.
 PRODUCT_VENDOR_PROPERTIES += \
     ro.hardware.egl=mesa \

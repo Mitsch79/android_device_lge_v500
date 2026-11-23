@@ -26,3 +26,5 @@ m systemimage
 ```
 
 The product installs the pair under `/system_ext/etc/setupwizard-shaders/`. On first launch the V500 wizard initializes missing cache files in its own device-protected cache directory. Skia loads GL program binaries and the driver validates their compatibility. Record the system and vendor revisions with the hashes and regenerate the pack when either graphics implementation changes. The generated files are excluded from Git.
+
+The optional Android screen-lock selector runs in the Settings process and keeps a separate cache. To train that path on the same build, open the real lock-method list, open PIN, cancel enrollment and allow the program caches to be written. Copy the two cache files from `/data/user_de/0/com.android.settings/cache/` into `device/lge/v500/.v500-settings-shaders/` before building. The product installs that pair under `/system_ext/etc/settings-shaders/`. An existing user cache takes precedence at startup.
