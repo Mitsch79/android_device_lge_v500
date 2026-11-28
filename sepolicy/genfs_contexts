@@ -1,0 +1,1 @@
+genfscon sysfs /devices/platform/soc/500000.qcom,ssbi/500000.qcom,ssbi:pmic@0/500000.qcom,ssbi:pmic@0:vibrator@4a u:object_r:sysfs_v500_vibrator:s0

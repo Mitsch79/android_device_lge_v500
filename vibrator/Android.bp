@@ -1,0 +1,14 @@
+cc_binary {
+    name: "android.hardware.vibrator-service.v500",
+    vendor: true,
+    relative_install_path: "hw",
+    srcs: ["Vibrator.cpp"],
+    init_rc: ["vibrator-v500.rc"],
+    vintf_fragments: ["vibrator-v500.xml"],
+    shared_libs: [
+        "android.hardware.vibrator-V2-ndk",
+        "libbase",
+        "libbinder_ndk",
+    ],
+    cflags: ["-Wall", "-Wextra", "-Werror"],
+}

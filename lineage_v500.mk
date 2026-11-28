@@ -11,6 +11,7 @@ PRODUCT_CHARACTERISTICS := tablet
 DEVICE_PACKAGE_OVERLAYS += vendor/lge/v500/overlay
 PRODUCT_PACKAGES += V500NavigationDefaults
 PRODUCT_PACKAGES += lights.v500 android.hardware.light@2.0-service android.hardware.light@2.0-impl
+PRODUCT_PACKAGES += android.hardware.vibrator-service.v500
 PRODUCT_USE_DYNAMIC_PARTITIONS := false
 PRODUCT_SHIPPING_API_LEVEL := 28
 PRODUCT_BUILD_BOOT_IMAGE := false
